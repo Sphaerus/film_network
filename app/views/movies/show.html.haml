@@ -1,0 +1,7 @@
+%h4= @movie.title
+
+%p= "Production: #{@movie.production}"
+%p= "Release date: #{@movie.release_date}"
+%p= "Description: #{@movie.description}"
+
+= link_to "Delete this movie", movie_path(@movie), method: :delete
