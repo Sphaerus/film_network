@@ -1,6 +1,5 @@
-class Movie < ActiveRecord::Base
-
-	validates :title, presence: true
+class Character < ActiveRecord::Base
+	attr_accessor :search_input
 
 	has_many :movie_characters
 

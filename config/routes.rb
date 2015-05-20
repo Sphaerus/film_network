@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :movies
+  resources :people
+  resources :characters do 
+    get :autocomplete_movie_title, :on => :collection
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
