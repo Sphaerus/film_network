@@ -1,6 +1,24 @@
 = simple_form_for @movie do |f|
 	= f.input :title
 	= f.input :production
-	= f.input :release_date
+	= f.input :release_date, input_html: {class: "datepicker"}, as: :string
 	= f.input :description
+	.search_bar
+		= f.input :search_bar
+	.people
+		= f.simple_fields_for :movie_people do |fmp|
+			.person-select
+				.person-id.hidden
+					= fmp.association :person, as: :string, label: false	
+				= fmp.input :id, as: :hidden, input_html: {class: "main_key"}
+				.additional-info
+					%h4.name= fmp.object.try(:person).try(:name)
+					.attribute.role
+						= fmp.input :role_name, label: false
+					.attribute.job
+						= fmp.input :job, as: :select, collection: Movie.jobs_collection, label: false, prompt: "Select a job."
+						
+				%i.minus.icon-minus
+					="minus"
 	= f.submit
+.hidden_select		

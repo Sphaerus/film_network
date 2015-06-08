@@ -4,4 +4,26 @@
 %p= "Release date: #{@movie.release_date}"
 %p= "Description: #{@movie.description}"
 
+%h3= "Actors" if @movie.actors?
+- @movie.actors.each do |actor|
+	.actor-box
+		.actor
+			= link_to actor.person.name, person_path(actor.person)
+		.role	
+			= actor.role_name
+			
+
+%h3= "Directors" if @movie.directors?
+- @movie.directors.each do |director|
+	%p= director.person.name	
+	
+%h3= "Producers" if @movie.producers?
+- @movie.producers.each do |producer|
+	%p= producer.person.name
+
+%h3= "Screenwriters" if @movie.screenwriters?
+- @movie.screenwriters.each do |screenwriter|
+	%p= screenwriter.person.name	
+
+	
 = link_to "Delete this movie", movie_path(@movie), method: :delete

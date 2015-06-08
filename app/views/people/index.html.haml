@@ -1,0 +1,11 @@
+%h3= "People"
+
+- @people.each do |person|
+	.person-box
+		%p= link_to person.name, person_path(person)
+		%p= "Born: #{person.born}"
+		%p= "Died: #{person.died}"
+		%p= person.description
+		.person-options
+			= link_to "Edit", edit_person_path(person)
+			= link_to "Delete", person_path(person), method: :delete

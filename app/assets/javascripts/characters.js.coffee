@@ -12,5 +12,5 @@ $(document).ready ->
 	$('.minus').mouseup ->
 			$(this).closest('.movie-select').remove()	
 
-	fakedata = ['test1','test2','test3','test4','ietsanders']
-	$('.search_input input').devbridgeAutocomplete lookup: fakedata
+	#fakedata = ['test1','test2','test3','test4','ietsanders']
+	#$('.search_input input').devbridgeAutocomplete lookup: fakedata
