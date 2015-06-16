@@ -4,6 +4,8 @@
 %p= "Release date: #{@movie.release_date}"
 %p= "Description: #{@movie.description}"
 
+= link_to "Delete this movie", movie_path(@movie), method: :delete
+
 %h3= "Actors" if @movie.actors?
 - @movie.actors.each do |actor|
 	.actor-box
@@ -25,5 +27,16 @@
 - @movie.screenwriters.each do |screenwriter|
 	%p= screenwriter.person.name	
 
-	
-= link_to "Delete this movie", movie_path(@movie), method: :delete
+%h2= "Discussions"
+= link_to "Start a new discussion", new_movie_topic_path(@movie), class: "btn btn-default"
+%table.table
+	%th
+	%th
+	%th
+	- @movie.topics.each do |topic|
+		%tr
+			%td= link_to topic.title, movie_topic_path(@movie, topic)
+			%td
+			%td
+				= link_to "Edit", edit_movie_topic_path(@movie, topic), class: "btn btn-default"
+				= link_to "Delete", movie_topic_path(@movie, topic), method: :delete, class: "btn btn-danger"

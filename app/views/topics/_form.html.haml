@@ -1,0 +1,6 @@
+= simple_form_for [@resource, @topic] do |f|
+	= f.input :title, label: false, placeholder: "Title"
+	= f.input :content, label: false, placeholder: "Content"
+	= f.input :resource, input_html: {value: "movie"}, as: :hidden
+	= f.submit
+	

@@ -6,9 +6,17 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :movies
+  resources :movies do 
+    resources :topics do 
+      resources :posts
+    end
+  end
+  
   resources :people do 
     get "autocomplete", on: :collection
+    resources :topics do 
+      resources :posts
+    end
   end
 
   # Example of regular route:

@@ -13,6 +13,8 @@ class Movie < ActiveRecord::Base
 
 	has_many :movie_people
   
+  has_many :topics, as: :subject
+  
   accepts_nested_attributes_for :movie_people, allow_destroy: true
   
   def self.jobs_collection

@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   mount_uploader :portrait, PortraitUploader
   
   has_many :movie_people
+  has_many :topics, as: :subject
   
   def self.autocomplete(query)
     result = Person.where("name regexp '#{query}'")

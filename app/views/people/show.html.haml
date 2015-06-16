@@ -4,3 +4,18 @@
 %p= "Born: #{@person.born}"
 %p= "Died: #{@person.died}"
 %p= "Description: #{@person.description}"
+
+%h2= "Discussions"
+= link_to "Start new discussion", new_person_topic_path(@person), class: "btn btn-default"
+
+%table.table
+	%th
+	%th
+	%th
+	- @person.topics.each do |topic|
+		%tr
+			%td= link_to topic.title, person_topic_path(@person, topic)
+			%td
+			%td
+				= link_to "Edit", edit_person_topic_path(@person, topic), class: "btn btn-default"
+				= link_to "Delete", person_topic_path(@person, topic), method: :delete, class: "btn btn-danger"

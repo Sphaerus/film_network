@@ -17,7 +17,6 @@ class MoviesController < ApplicationController
 		@movie = Movie.new(movie_params)
     
 		respond_to do |format|
-      debugger
 			if @movie.save
 				format.html { redirect_to movie_path(@movie), notice: "Movie succesfully created"}
 			else        
@@ -29,7 +28,6 @@ class MoviesController < ApplicationController
   
   def update
     @movie.assign_attributes(movie_params)
-    debugger
     delete_movie_people
     respond_to do |format|
       if @movie.save
