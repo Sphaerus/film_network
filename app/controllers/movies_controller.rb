@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 	before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
 	def show
+    @score = current_user.scores.where(resource_id: @movie.id).first || @movie.scores.build
 	end
 
 	def new

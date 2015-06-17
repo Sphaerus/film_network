@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609214938) do
+ActiveRecord::Schema.define(version: 20150616192115) do
 
   create_table "characters", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 20150609214938) do
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "scores", force: :cascade do |t|
+    t.string   "resource_type", limit: 255
+    t.integer  "resource_id",   limit: 4
+    t.integer  "score",         limit: 4
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "scores", ["user_id"], name: "index_scores_on_user_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
     t.string   "title",        limit: 255
     t.text     "content",      limit: 65535
@@ -108,5 +119,6 @@ ActiveRecord::Schema.define(version: 20150609214938) do
   add_foreign_key "movie_people", "people"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
+  add_foreign_key "scores", "users"
   add_foreign_key "topics", "users"
 end

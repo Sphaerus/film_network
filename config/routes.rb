@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :scores
+  
   resources :people do 
     get "autocomplete", on: :collection
     resources :topics do 
