@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   
   has_many :movie_people
   has_many :topics, as: :subject
+  has_many :scores, as: :resource
   
   def self.autocomplete(query)
     result = Person.where("name regexp '#{query}'")

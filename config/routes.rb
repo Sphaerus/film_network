@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :scores
+  resources :scores do 
+    post "score", on: :collection
+  end
   
   resources :people do 
     get "autocomplete", on: :collection

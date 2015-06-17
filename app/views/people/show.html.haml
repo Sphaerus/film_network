@@ -1,3 +1,10 @@
+.user_score
+	- if current_user
+		= select_tag "score", options_for_select(1..10, @score.try(:score)), prompt: "Rate!"
+		.id.hidden{data: {id: @person.id.to_s}}
+	- else
+		%p= "Log in to rate this person"
+
 %h3= @person.name
 = image_tag @person.portrait_url
 

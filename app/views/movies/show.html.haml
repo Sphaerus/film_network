@@ -1,9 +1,7 @@
 .user_score
 	- if current_user
-		= simple_form_for @score, method: @score.new_record? ? :post : :put do |f|
-			= f.input :score, as: :select, collection: 1..10, prompt: "Rate this movie!", label: false, selected: f.object.try(:score)
-			= f.input :resource_id, input_html: {value: @movie.id}, as: :hidden
-			= f.input :resource_type, input_html: {value: "Movie"}, as: :hidden
+		= select_tag "score", options_for_select(1..10, @score.try(:score)), prompt: "Rate a movie"
+		.id.hidden{data: {id: @movie.id.to_s}}
 	- else
 		%p= "Log in to rate this movie"
 

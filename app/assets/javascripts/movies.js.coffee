@@ -77,3 +77,12 @@ $(document).ready ->
 		destroy = false			
 				
 		$(this).closest('.person-select').remove()
+	
+	$(document).ready ->
+		$('.user_score select').change ->
+			hash = {"resource_type": "Movie", "resource_id": $('.id.hidden').data("id"), "score": $('.user_score select').val() }
+			$.ajax
+				dataType: "json"
+				type: "post"
+				url: "/scores/score"
+				data: { score: hash }	

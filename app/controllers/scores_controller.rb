@@ -1,26 +1,14 @@
 class ScoresController < ApplicationController
   
-  def create
-    @score = current_user.scores.build(score_params)
-    
+  def score
+    @score = current_user.scores.where(resource_id: params[:score][:resource_id], resource_type: params[:score][:resource_type]).first || current_user.scores.build(score_params)
+    if !@score.new_record?
+      @score.assign_attributes(score_params)
+    end  
+
+    @score.save
     respond_to do |format|
-      if @score.save
-        format.json { render json: true }
-      else
-        format.json { render json: false }
-      end
-    end
-  end
-  
-  def update
-    @score = Score.find(params[:id])
-    
-    respond_to do |format|
-      if @score.update_attributes(score_params)
-        format.json { render json: true }
-      else
-        format.json { render json: false }
-      end
+      format.json {render json: true}
     end
   end
   
