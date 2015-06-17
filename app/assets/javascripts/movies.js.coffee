@@ -1,4 +1,5 @@
 $(document).ready ->
+	console.log "jestem tu"
 	select = $('.person-select:last').clone()
 	select.addClass("hidden")
 	$('.hidden_select').append(select)
