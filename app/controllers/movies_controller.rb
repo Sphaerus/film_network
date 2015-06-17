@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   end
 
 	def show
-    @score = current_user.scores.where(resource_id: @movie.id).first || @movie.scores.build
+    @score = current_user.scores.where(resource_id: @movie.id).first || @movie.scores.build if current_user
 	end
 
 	def new

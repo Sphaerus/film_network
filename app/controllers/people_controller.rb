@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
 
 	def show
 		@person = Person.find(params[:id])
-    @score = current_user.scores.where(resource_id: @person.id).first || @person.scores.build
+    @score = current_user.scores.where(resource_id: @person.id).first || @person.scores.build if current_user
 	end
 
 	def new
