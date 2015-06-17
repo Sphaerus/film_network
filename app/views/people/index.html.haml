@@ -1,11 +1,16 @@
 %h3= "People"
 
-- @people.each do |person|
-	.person-box
-		%p= link_to person.name, person_path(person)
-		%p= "Born: #{person.born}"
-		%p= "Died: #{person.died}"
-		%p= person.description
-		.person-options
-			= link_to "Edit", edit_person_path(person)
-			= link_to "Delete", person_path(person), method: :delete
+= paginate @people
+%table.table.table-striped
+	%tbody
+		%th= "ID"
+		%th= "Name"
+		%th
+		- @people.each do |person|
+			%tr
+				%td= person.id
+				%td= link_to person.name, person_path(person)
+				%td
+					= link_to "Edit", edit_person_path(person), class: "btn btn-primary"
+					= link_to "Delete", person_path(person), method: :delete, class: "btn btn-danger"		
+= paginate @people						

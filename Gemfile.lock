@@ -94,6 +94,9 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.16.14.7)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
@@ -202,6 +205,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  kaminari
   mini_magick
   mysql2
   rails (= 4.2.1)

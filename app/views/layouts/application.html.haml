@@ -8,8 +8,8 @@
 		= csrf_meta_tags
 	%body
 		.main-page-container
-			= render 'layouts/flash_messages'
 			= link_to "Home", root_path		
+			= link_to "Movies", movies_path
 			- if user_signed_in?
 				= current_user.email
 				= link_to "Log out", destroy_user_session_path, method: :delete 
@@ -17,4 +17,5 @@
 				= link_to "Log in", new_user_session_path
 				= link_to "Sign up", new_user_registration_path
 			%h1.logo= "Film Network"	
+			= render 'layouts/flash_messages'
 			= yield

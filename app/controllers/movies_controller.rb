@@ -1,5 +1,9 @@
 class MoviesController < ApplicationController
 	before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  
+  def index
+    @movies = Movie.page(params[:page]).per(10)
+  end
 
 	def show
     @score = current_user.scores.where(resource_id: @movie.id).first || @movie.scores.build
