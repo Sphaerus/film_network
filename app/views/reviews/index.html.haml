@@ -1,0 +1,10 @@
+%h3= "#{@movie.title} reviews"
+
+%p= link_to "Add new review", new_movie_review_path(@movie)
+%table.table
+	- @reviews.each do |review|
+		%tr
+			%td= link_to review.title, movie_review_path(@movie, review)
+			%td
+				= link_to "Edit", edit_movie_review_path(@movie, review)
+				= link_to "Delete", movie_review_path(@movie, review), method: :delete

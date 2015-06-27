@@ -12,9 +12,9 @@ class Movie < ActiveRecord::Base
 	validates :title, presence: true
 
 	has_many :movie_people
-  
   has_many :topics, as: :subject
   has_many :scores, as: :resource
+  has_many :reviews
   
   accepts_nested_attributes_for :movie_people, allow_destroy: true
   
