@@ -29,6 +29,8 @@ gem "mini_magick"
 #authentication
 gem 'devise'
 
+#authorization
+gem "pundit"
 #forms
 gem "simple_form"
 

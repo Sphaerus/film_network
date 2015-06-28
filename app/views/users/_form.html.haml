@@ -1,6 +1,6 @@
 = simple_form_for current_user do |f|
 	= f.input :nickname
 	= f.input :avatar
-	= f.input :banned
-	= f.input :admin
+	= f.input :banned if policy(User).admin?
+	= f.input :admin if policy(User).admin?
 	= f.submit
