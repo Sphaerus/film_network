@@ -3,7 +3,7 @@
 %table.table
 	-	@users.each do |user|
 		%tr
-			%td= user.email
+			%td= link_to user.display_name, user_path(user)
 			%td
 				- if policy(user).edit?
 					= link_to "Edit", edit_user_path(user), class: "btn btn-primary"
