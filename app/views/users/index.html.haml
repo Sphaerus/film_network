@@ -5,5 +5,6 @@
 		%tr
 			%td= user.email
 			%td
-				= link_to "Edit", edit_user_path(user), class: "btn btn-primary"
-				= link_to "Delete", user_path(user), method: :delete, class: "btn btn-danger"
+				- if policy(user).edit?
+					= link_to "Edit", edit_user_path(user), class: "btn btn-primary"
+					= link_to "Delete", user_path(user), method: :delete, class: "btn btn-danger"

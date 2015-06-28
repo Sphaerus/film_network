@@ -9,7 +9,7 @@ class UserPolicy < ApplicationPolicy
   end
   
   def edit?
-    show && @record.id == @user.id
+    admin? || @record.id == @user.id
   end
   
   def destroy
