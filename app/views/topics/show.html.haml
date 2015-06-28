@@ -1,9 +1,13 @@
-%h4= @topic.title
+%p= "Author: #{@topic.user.display_name}"
+%h4= "Title: #{@topic.title}"
 %p= @topic.content
 
 - @topic.posts.where('content is not null').each do |post|
 	.post-box
+		%p= "Author: #{post.user.display_name}"
 		%p= post.content
+		%p= link_to "Edit", [:edit, @resource, @topic, post]
+		%p= link_to "Delete", [ @resource, @topic, post], method: :delete
 		
 - if current_user
 	= simple_form_for [@resource, @topic, @post] do |f|

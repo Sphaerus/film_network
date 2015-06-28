@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   
   def create
     @post = @topic.posts.build(post_params)
+    @post.user_id = current_user.id
     
     respond_to do |format|
       if @post.save
@@ -39,7 +40,7 @@ class PostsController < ApplicationController
     @post.destroy
     
     respond_to do |format|
-      format.html { redirect_to redirect_to topic_show_path(@topic), notice: "Post successfuly deleted"}
+      format.html { redirect_to topic_show_path(@topic), notice: "Post successfuly deleted"}
     end
   end
   

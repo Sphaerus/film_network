@@ -1,10 +1,10 @@
 class PostPolicy < ApplicationPolicy
   
-  def new
+  def new?
     @user
   end
   
-  def create
+  def create?
     @user
   end
   
@@ -16,7 +16,7 @@ class PostPolicy < ApplicationPolicy
     edit?
   end
   
-  def destroy
+  def destroy?
     edit?
   end
   

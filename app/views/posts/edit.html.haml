@@ -1,0 +1,4 @@
+%h3= "Edit post"
+=simple_form_for @post, url: [@resource, @topic, @post], method: :put do |f|
+	= f.input :content
+	= f.submit

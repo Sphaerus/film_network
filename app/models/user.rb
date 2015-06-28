@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
          
   has_many :scores       
   has_many :reviews
+  
+  def display_name
+    return nickname if !nickname.blank?
+    return email
+  end
 end

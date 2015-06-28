@@ -1,10 +1,10 @@
-class MoviePolicy < ApplicationPolicy
+class TopicPolicy < ApplicationPolicy
   
-  def new
+  def new?
     @user
   end
   
-  def create
+  def create?
     @user
   end
   
