@@ -5,4 +5,5 @@
 	= f.input :born, input_html: {class: "datepicker"}, as: :string
 	= f.input :died, input_html: {class: "datepicker"}, as: :string
 	= f.input :description
+	= f.input :opened if policy(@person).own?
 	= f.submit

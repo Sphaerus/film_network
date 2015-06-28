@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628154052) do
+ActiveRecord::Schema.define(version: 20150628193453) do
 
   create_table "characters", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -47,19 +47,27 @@ ActiveRecord::Schema.define(version: 20150628154052) do
     t.string   "production",   limit: 255
     t.date     "release_date"
     t.text     "description",  limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "opened",       limit: 1,     default: false
+    t.integer  "user_id",      limit: 4
   end
+
+  add_index "movies", ["user_id"], name: "index_movies_on_user_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.date     "born"
     t.date     "died"
     t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "portrait",    limit: 255
+    t.boolean  "opened",      limit: 1,     default: false
+    t.integer  "user_id",     limit: 4
   end
+
+  add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id",   limit: 4
@@ -132,6 +140,8 @@ ActiveRecord::Schema.define(version: 20150628154052) do
   add_foreign_key "movie_characters", "movies"
   add_foreign_key "movie_people", "movies"
   add_foreign_key "movie_people", "people"
+  add_foreign_key "movies", "users"
+  add_foreign_key "people", "users"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "reviews", "users"

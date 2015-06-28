@@ -13,7 +13,10 @@
 %p= "Description: #{@person.description}"
 
 %h2= "Discussions"
-= link_to "Start new discussion", new_person_topic_path(@person), class: "btn btn-default"
+- if current_user
+	= link_to "Start new discussion", new_person_topic_path(@person), class: "btn btn-default"-
+- else
+	= "Log in to start a discussion"
 
 %table.table
 	%th

@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
 	before_action :set_movie, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -16,10 +17,13 @@ class MoviesController < ApplicationController
   
   def edit
     @movie.movie_people.build if @movie.movie_people.empty?
+    authorize @movie
   end
 
 	def create
 		@movie = Movie.new(movie_params)
+    @movie.user_id = current_user.id
+    authorize @movie
     
 		respond_to do |format|
 			if @movie.save
@@ -33,6 +37,7 @@ class MoviesController < ApplicationController
   
   def update
     @movie.assign_attributes(movie_params)
+    autorize @movie
     delete_movie_people
     respond_to do |format|
       if @movie.save
@@ -45,6 +50,7 @@ class MoviesController < ApplicationController
   end
 
 	def destroy
+    authorize @movie
 		@movie.destroy
     
 		respond_to do |format|

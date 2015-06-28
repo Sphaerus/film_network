@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_resource, only: [:new, :show, :edit, :create, :update, :destroy]
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
@@ -11,10 +12,13 @@ class TopicsController < ApplicationController
   end
   
   def edit
+    authorize @topic
   end
   
   def create
     @topic = @resource.topics.build(topic_params)
+    @topic.user_id = current_user.id
+    authorize @topic
 
     respond_to do |format|
       if @topic.save
@@ -26,6 +30,7 @@ class TopicsController < ApplicationController
   end
   
   def update
+    authorize @topic
     respond_to do |format|
       if @topic.update_attributes(topic_params)
         format.html { redirect_to topic_show_path(@topic), notice: "Topic successfully updated"}
@@ -36,6 +41,7 @@ class TopicsController < ApplicationController
   end
   
   def destroy
+    authorize @topic
     @topic.destroy
     
     respond_to do |format|

@@ -16,10 +16,12 @@ class PostsController < ApplicationController
   
   def edit
     @post = @topic.posts.find(params[:id])
+    authorize @post
   end
   
   def update
     @post = @topic.posts.find(params[:id])
+    authorize @post
     
     respond_to do |format|
       if @post.update_attributes(post_params)
@@ -32,6 +34,8 @@ class PostsController < ApplicationController
   
   def destroy
     @post = @topic.posts.find(params[:id])
+    authorize @post
+    
     @post.destroy
     
     respond_to do |format|

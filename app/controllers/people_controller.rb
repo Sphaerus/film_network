@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   
   def index
     @people = Person.page(params[:page]).per(10)
@@ -15,10 +16,12 @@ class PeopleController < ApplicationController
 
 	def edit
 		@person = Person.find(params[:id])
+    authorize @person
 	end
 
 	def create
 		@person = Person.new(persons_params)
+    @person.user_id = current_user.id
 		respond_to do |format|
 			if @person.save
 				format.html { redirect_to @person, notice: "Person successfully added"}
@@ -30,17 +33,19 @@ class PeopleController < ApplicationController
 
 	def update
 		@person = Person.find(params[:id])
+    authorize @person
 		respond_to do |format|
 			if @person.update_attributes(persons_params)
 				format.html { redirect_to @person, notice: "Person successfully edited"}
 			else
-				format.html { redner "edit" }
+				format.html { render "edit" }
 			end
 		end
 	end
   
   def destroy
     @person = Person.find(params[:id])
+    authorize @person
     @person.destroy
     
 		respond_to do |format|
@@ -59,6 +64,6 @@ class PeopleController < ApplicationController
 	private
 
 	def persons_params
-		params.require(:person).permit(:name, :born, :died, :description, :portrait)
+		params.require(:person).permit(:name, :born, :died, :description, :portrait, :opened)
 	end
 end

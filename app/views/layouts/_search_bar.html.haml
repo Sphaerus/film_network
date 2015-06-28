@@ -1,0 +1,5 @@
+= simple_form_for :query, url: search_home_index_path, method: :get do |f|
+	.query
+		= f.input :query, label: false, placeholder: "Search..."
+		.submit
+			= f.submit "Search"

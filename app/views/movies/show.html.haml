@@ -10,8 +10,13 @@
 %p= "Production: #{@movie.production}"
 %p= "Release date: #{@movie.release_date}"
 %p= "Description: #{@movie.description}"
-%p= link_to "#{@movie.reviews.last.title} (latest review)", movie_review_path(@movie,@movie.reviews.last)
-%p= link_to "All reviews", movie_reviews_path(@movie)
+.review-box
+	- if !@movie.reviews.empty?
+		%p= link_to "#{@movie.reviews.last.title} (latest review)", movie_review_path(@movie,@movie.reviews.last)
+		%p= link_to "All reviews", movie_reviews_path(@movie)
+	- else
+		%p= "No reviews for this movie."
+	%p= link_to "Add new review", new_movie_review_path(@movie)	
 
 = link_to "Delete this movie", movie_path(@movie), method: :delete
 

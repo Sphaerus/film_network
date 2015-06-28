@@ -5,8 +5,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  resources :home do 
+    get "search", on: :collection
+  end  
   
   resources :users
+  
 
   resources :movies do 
     resources :reviews

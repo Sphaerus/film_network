@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_movie
   
   def index
@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
   
   def create
     @review = current_user.reviews.build(reviews_params)
+    authorize @review
     @review.movie = @movie
     
     respond_to do |format|
@@ -29,10 +30,12 @@ class ReviewsController < ApplicationController
   
   def edit
     @review = @movie.reviews.find(params[:id])
+    authorize @review
   end
   
   def update
     @review = @movie.reviews.find(params[:id])
+    authorize @review
     
     respond_to do |format|
       if @review.update_attributes(reviews_params)
@@ -45,6 +48,7 @@ class ReviewsController < ApplicationController
   
   def destroy
     @review = @movie.reviews.find(params[:id])
+    authorize @review
     @review.destroy
     
     respond_to do |format|
