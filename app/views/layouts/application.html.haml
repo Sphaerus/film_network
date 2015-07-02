@@ -20,6 +20,7 @@
 				= link_to "Log in", new_user_session_path
 				= link_to "Sign up", new_user_registration_path
 			%h1.logo= "Film Network"	
-			= render "layouts/search_bar"
+			.search-bar
+				= render "layouts/search_bar"
 			= render 'layouts/flash_messages'
 			= yield

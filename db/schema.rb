@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20150702202502) do
 
   create_table "scores", force: :cascade do |t|
     t.string   "resource_type", limit: 255
-    t.integer  "resource_id",   limit: 4
+    t.integer  "resource_id",  s limit: 4
     t.integer  "score",         limit: 4
     t.integer  "user_id",       limit: 4
     t.datetime "created_at",                null: false
