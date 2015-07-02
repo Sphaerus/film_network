@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
     if !params[:user_id].blank?
       @people = Person.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 10)
     else
-      @people = Person.page(params[:page]).per(10).paginate(page: params[:page], per_page: 10)
+      @people = Person.paginate(page: params[:page], per_page: 10)
     end  
   end
 
