@@ -1,7 +1,7 @@
 %h3= "People"
 
 %p= link_to "Add new person", new_person_path
-= paginate @people
+= will_paginate @people
 %table.table.table-striped
 	%tbody
 		%th= "ID"
@@ -15,4 +15,4 @@
 					%td
 						= link_to "Edit", edit_person_path(person), class: "btn btn-primary"
 						= link_to "Delete", person_path(person), method: :delete, class: "btn btn-danger"		
-= paginate @people						
+= will_paginate @people						

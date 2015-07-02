@@ -10,4 +10,13 @@ class Person < ActiveRecord::Base
     {"suggestions" => result.map {|person| {"data" => person.id.to_s, "value" => person.name}}
     }.to_json
   end
+  
+  def self.search(query)
+    if !query.blank?
+      Person.where("name regexp '#{query}'")
+    else
+      Person.all
+    end
+  end
+
 end

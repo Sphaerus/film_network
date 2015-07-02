@@ -1,3 +1,7 @@
 %h3= "Users profile"
-= @user.display_name
+%p= link_to "Edit", edit_user_path(current_user) if @user == current_user
+%p= @user.display_name
 = image_tag @user.avatar_url
+
+%p= link_to "See movies added by #{@user.display_name}!", user_movies_path(@user)
+%p= link_to "See people added by #{@user.display_name}!", user_people_path(@user)

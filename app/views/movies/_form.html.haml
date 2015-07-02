@@ -3,6 +3,7 @@
 	= f.input :production
 	= f.input :release_date, input_html: {class: "datepicker"}, as: :string
 	= f.input :description
+	= f.input :poster
 	= f.input :opened if policy(@movie).own?
 	.search_bar
 		= f.input :search_bar

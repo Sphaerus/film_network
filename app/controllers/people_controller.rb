@@ -2,7 +2,11 @@ class PeopleController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   
   def index
-    @people = Person.page(params[:page]).per(10)
+    if !params[:user_id].blank?
+      @people = Person.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 10)
+    else
+      @people = Person.page(params[:page]).per(10).paginate(page: params[:page], per_page: 10)
+    end  
   end
 
 	def show

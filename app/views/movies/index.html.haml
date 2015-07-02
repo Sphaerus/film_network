@@ -1,7 +1,7 @@
 %h3= "Movies"
 
 %p= link_to "Add new movie", new_movie_path
-= paginate @movies		
+= will_paginate @movies		
 %table.table.table-striped
 	%tbody
 		%th= "ID"
@@ -15,4 +15,4 @@
 					%td
 						= link_to "Edit", edit_movie_path(movie), class: "btn btn-primary"
 						= link_to "Delete", movie_path(movie), method: :delete, class: "btn btn-danger"
-= paginate @movies			
+= will_paginate @movies			

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
          
   has_many :scores       
   has_many :reviews
+  has_many :movies
+  has_many :people
   
   def display_name
     return nickname if !nickname.blank?

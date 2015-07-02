@@ -1,10 +1,10 @@
 class ReviewPolicy < ApplicationPolicy
   
-  def new
+  def new?
     @user
   end
   
-  def create
+  def create?
     @user
   end
   

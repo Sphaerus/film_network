@@ -3,7 +3,11 @@ class MoviesController < ApplicationController
 	before_action :set_movie, only: [:show, :edit, :update, :destroy]
   
   def index
-    @movies = Movie.page(params[:page]).per(10)
+    if !params[:user_id].blank?
+      @movies = Movie.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 10)
+    else
+      @movies = Movie.page(params[:page]).paginate(page: params[:page], per_page: 10) 
+    end  
   end
 
 	def show
@@ -37,11 +41,10 @@ class MoviesController < ApplicationController
   
   def update
     @movie.assign_attributes(movie_params)
-    autorize @movie
+    authorize @movie
     delete_movie_people
     respond_to do |format|
       if @movie.save
-        #delete_movie_people
         format.html {redirect_to @movie, notice: "Movie update successfuly completed!"}
       else
         format.html {render action: "edit", notice: @movie.errors}
@@ -61,7 +64,7 @@ class MoviesController < ApplicationController
 	private
 
 	def movie_params
-		params.require(:movie).permit(:title, :production, :release_date, :description, movie_people_attributes: [:id, :movie_id, :person_id, :job, :role_name])
+		params.require(:movie).permit(:title, :poster, :production, :release_date, :description, movie_people_attributes: [:id, :movie_id, :person_id, :job, :role_name])
 	end
   
   def delete_movie_people

@@ -21,10 +21,15 @@ gem "haml-rails"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
 
+gem 'will_paginate'
+
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave'
 
 gem "mini_magick"
+
+gem 'better_errors'
+gem "binding_of_caller"
 
 #authentication
 gem 'devise'
@@ -33,9 +38,6 @@ gem 'devise'
 gem "pundit"
 #forms
 gem "simple_form"
-
-#pagination
-gem "kaminari"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

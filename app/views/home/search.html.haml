@@ -1,8 +1,8 @@
-%h3= "Whats new"
+= will_paginate @records
 
 - @records.each do |record|
 	.search-box-result
 		%h3= link_to display_search_results_title(record), search_result_path(record)
 		%p= image_tag display_image(record) if display_image(record)
 
-= will_paginate @records		
+= will_paginate @records	

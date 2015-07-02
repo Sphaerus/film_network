@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
+  mount_uploader :poster, PosterUploader
   
   attr_accessor :search_bar
   
@@ -17,6 +18,14 @@ class Movie < ActiveRecord::Base
   has_many :reviews
   
   accepts_nested_attributes_for :movie_people, allow_destroy: true
+  
+  def self.search(query)
+    if !query.blank?
+      Movie.where("title regexp '#{query}'")
+    else
+      Movie.all
+    end  
+  end
   
   def self.jobs_collection
     JOBS.map { |integer, label|  [label, integer]}

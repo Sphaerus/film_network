@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     get "search", on: :collection
   end  
   
-  resources :users
+  resources :users do
+    resources :movies
+    resources :people
+  end
   
 
   resources :movies do 

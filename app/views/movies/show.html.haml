@@ -6,6 +6,7 @@
 		%p= "Log in to rate this movie"
 
 %h4= @movie.title
+= image_tag @movie.poster_url
 
 %p= "Production: #{@movie.production}"
 %p= "Release date: #{@movie.release_date}"
