@@ -12,7 +12,7 @@ class UserPolicy < ApplicationPolicy
     admin? || @record.id == @user.id
   end
   
-  def destroy
+  def destroy?
     admin?
   end
   
