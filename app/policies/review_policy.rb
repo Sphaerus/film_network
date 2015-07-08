@@ -9,7 +9,7 @@ class ReviewPolicy < ApplicationPolicy
   end
   
   def edit?
-    @user && (@record.user_id == @user.id)
+    admin? || (@user && (@record.user_id == @user.id))
   end
   
   def update?

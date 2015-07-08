@@ -9,7 +9,7 @@ class MoviePolicy < ApplicationPolicy
   end
   
   def edit?
-    @user && (@record.user_id == @user.id || @record.opened?)
+    admin? || (@user && (@record.user_id == @user.id || @record.opened?))
   end
   
   def update?
