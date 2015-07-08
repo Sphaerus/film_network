@@ -16,7 +16,7 @@ class TopicPolicy < ApplicationPolicy
     edit?
   end
   
-  def destroy
+  def destroy?
     edit?
   end
   

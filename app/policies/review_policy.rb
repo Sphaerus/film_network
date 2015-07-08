@@ -16,7 +16,7 @@ class ReviewPolicy < ApplicationPolicy
     edit?
   end
   
-  def destroy
+  def destroy?
     edit?
   end
   
