@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   include Pundit
-  add_crumb("Home") { |instance| instance.send :root_path }
   protect_from_forgery with: :exception
   
   rescue_from "Pundit::NotAuthorizedError", with: :not_authorized
