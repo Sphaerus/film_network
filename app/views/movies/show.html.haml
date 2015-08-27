@@ -33,15 +33,15 @@
 
 %h3= "Directors" if @movie.directors?
 - @movie.directors.each do |director|
-	%p= director.person.name	
+	%p= link_to director.person.name, director.person	
 	
 %h3= "Producers" if @movie.producers?
 - @movie.producers.each do |producer|
-	%p= producer.person.name
+	%p= link_to producer.person.name, producer.person
 
 %h3= "Screenwriters" if @movie.screenwriters?
 - @movie.screenwriters.each do |screenwriter|
-	%p= screenwriter.person.name	
+	%p= link_to screenwriter.person.name, screenwriter.person
 
 %h2= "Discussions"
 = link_to "Start a new discussion", new_movie_topic_path(@movie), class: "btn btn-default"
