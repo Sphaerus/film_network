@@ -45,6 +45,10 @@ class ApplicationPolicy
   def own?
     @user.id == @record.user_id
   end
+  
+  def banned?
+    @user.banned?
+  end
 
   class Scope
     attr_reader :user, :scope

@@ -1,6 +1,6 @@
 %h3= "People"
 
-%p= link_to "Add new person", new_person_path
+%p= link_to "Add new person", new_person_path if policy(Person).new? && @user.nil?
 = will_paginate @people
 %table.table.table-striped
 	%tbody

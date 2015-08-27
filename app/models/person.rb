@@ -1,9 +1,9 @@
 class Person < ActiveRecord::Base
   mount_uploader :portrait, PortraitUploader
   
-  has_many :movie_people
-  has_many :topics, as: :subject
-  has_many :scores, as: :resource
+  has_many :movie_people, dependent: :destroy
+  has_many :topics, as: :subject, dependent: :destroy
+  has_many :scores, as: :resource, dependent: :destroy
   
   def self.autocomplete(query)
     result = Person.where("name regexp '#{query}'")
@@ -18,5 +18,4 @@ class Person < ActiveRecord::Base
       Person.all
     end
   end
-
 end

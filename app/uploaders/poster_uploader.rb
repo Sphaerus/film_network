@@ -15,7 +15,7 @@ include CarrierWave::MiniMagick
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   
-  process resize_to_fit: [200, 285]
+  process resize_to_fit: [200, 132]
 
   # Create different versions of your uploaded files:
    version :thumb do

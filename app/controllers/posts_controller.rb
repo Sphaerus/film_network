@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     
     respond_to do |format|
       if @post.update_attributes(post_params)
-        format.html { redirect_to topic_show_path(@topic), notice: "Post successfuly updated"}
+        format.html { redirect_to topic_show_path(@topic)}
       else
         format.html { redirect_to topic_show_path(@topic), alert: @post.errors}
       end

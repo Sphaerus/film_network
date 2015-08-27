@@ -31,6 +31,9 @@ gem "mini_magick"
 gem 'better_errors'
 gem "binding_of_caller"
 
+#breadcrumbs
+gem "crummy", "~> 1.8.0" 
+
 #authentication
 gem 'devise'
 

@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
   def index
     if !params[:user_id].blank?
       @movies = Movie.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 10)
+      @user = User.find(params[:user_id])
     else
       @movies = Movie.page(params[:page]).paginate(page: params[:page], per_page: 10) 
     end  

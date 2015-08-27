@@ -1,11 +1,11 @@
 class TopicPolicy < ApplicationPolicy
   
   def new?
-    @user
+    @user && !banned?
   end
   
   def create?
-    @user
+    @user && !banned?
   end
   
   def edit?

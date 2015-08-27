@@ -37,10 +37,10 @@ class UsersController < ApplicationController
   private
   
   def users_params_for_users
-    params.require(:user).permit(:nickname, :avatar)
+    params.require(:user).permit(:nickname, :avatar, :remove_avatar)
   end
   
   def users_params_for_admins
-    params.require(:user).permit(:nickname, :avatar, :admin, :banned)
+    params.require(:user).permit(:nickname, :avatar, :admin, :banned, :remove_avatar)
   end
 end

@@ -4,6 +4,7 @@ class PeopleController < ApplicationController
   def index
     if !params[:user_id].blank?
       @people = Person.where(user_id: params[:user_id]).paginate(page: params[:page], per_page: 10)
+      @user = User.find(params[:user_id])
     else
       @people = Person.paginate(page: params[:page], per_page: 10)
     end  

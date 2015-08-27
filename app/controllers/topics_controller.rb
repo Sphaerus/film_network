@@ -59,6 +59,14 @@ class TopicsController < ApplicationController
     end
   end
   
+  def resource_name
+    if @resource.is_a?(Person)
+      return @resource.name
+    else
+      return @resource.title
+    end
+  end
+  
   def set_topic
     @topic = @resource.topics.find(params[:id])
   end

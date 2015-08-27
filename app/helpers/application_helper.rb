@@ -14,9 +14,11 @@ module ApplicationHelper
   def display_image(record)
     case record
     when Movie
-      record.poster if record.poster
+      record.poster.file ? record.poster : "question_mark.jpg"
     when Person
-      record.portrait if record.portrait
+      record.portrait.file ? record.portrait : "question_mark.jpg"
+    when User
+      record.avatar.file ? record.avatar : "question_mark.jpg"
     end
   end
   

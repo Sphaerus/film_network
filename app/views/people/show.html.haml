@@ -12,6 +12,9 @@
 %p= "Died: #{@person.died}"
 %p= "Description: #{@person.description}"
 
+%p= link_to "Edit this person", edit_person_path(@person) if policy(@person).edit?
+%p= link_to "Delete this person", person_path(@person), method: :delete if policy(@person).destroy?
+
 %h2= "Discussions"
 - if current_user
 	= link_to "Start new discussion", new_person_topic_path(@person), class: "btn btn-default"

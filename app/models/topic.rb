@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :subject, polymorphic: true
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   validates :title, :content, presence: true
 end

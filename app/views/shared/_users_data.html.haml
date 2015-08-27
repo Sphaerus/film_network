@@ -1,0 +1,6 @@
+.user-box
+	.user-info
+		.user-name	
+			%h4= link_to user.display_name, user
+		.user-avatar
+			= image_tag display_image(user)

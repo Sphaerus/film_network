@@ -3,4 +3,5 @@
 	= f.input :avatar
 	= f.input :banned if policy(User).admin?
 	= f.input :admin if policy(User).admin?
+	= f.input :remove_avatar, label: "Remove avatar", as: :boolean
 	= f.submit

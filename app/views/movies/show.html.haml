@@ -17,9 +17,10 @@
 		%p= link_to "All reviews", movie_reviews_path(@movie)
 	- else
 		%p= "No reviews for this movie."
-	%p= link_to "Add new review", new_movie_review_path(@movie)	
+	%p= link_to "Add new review", new_movie_review_path(@movie)	if policy(Review).new?
 
-= link_to "Delete this movie", movie_path(@movie), method: :delete
+%p= link_to "Edit this movie", edit_movie_path(@movie) if policy(@movie).edit?
+%p= link_to "Delete this movie", movie_path(@movie), method: :delete if policy(@movie).destroy?
 
 %h3= "Actors" if @movie.actors?
 - @movie.actors.each do |actor|

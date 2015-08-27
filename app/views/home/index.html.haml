@@ -4,5 +4,14 @@
 	.search-box-result
 		%h3= link_to display_search_results_title(record), search_result_path(record)
 		%p= image_tag display_image(record) if display_image(record)
+		-if record.is_a?(Person)
+			.record-data
+				.person-data
+					%p= "Born: #{record.born}" 
+					= "Died: #{record.died}"
+		-elsif record.is_a?(Movie)
+			.record-data
+				%p= "Production: #{record.production}"
+				= "Release date: #{record.release_date}"	
 
 = will_paginate @records		

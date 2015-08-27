@@ -1,17 +1,32 @@
-%p= "Author: #{@topic.user.display_name}"
-%h4= "Title: #{@topic.title}"
-%p= @topic.content
+.subject
+	%h2= link_to display_resource_name(@resource), @resource
+.topic-box
+	%h4= "Title: #{@topic.title}"
+	.data
+		= @topic.created_at
+	.user-data
+		= render "shared/users_data", user: @topic.user
+	.content
+		%p= @topic.content
+	- if policy(@topic).edit?
+		%p= link_to "Edit", [:edit, @resource, @topic]
+		%p= link_to "Delete", [ @resource, @topic], method: :delete
 
 - @topic.posts.where('content is not null').each do |post|
 	.post-box
-		%p= "Author: #{post.user.display_name}"
-		%p= post.content
-		%p= link_to "Edit", [:edit, @resource, @topic, post]
-		%p= link_to "Delete", [ @resource, @topic, post], method: :delete
+		.data
+			= post.created_at
+		= render "shared/users_data", user: post.user
+		.post-content
+			= post.content
+		- if policy(post).edit?
+			%p= link_to "Edit", [:edit, @resource, @topic, post]
+			%p= link_to "Delete", [ @resource, @topic, post], method: :delete
 		
-- if current_user
-	= simple_form_for [@resource, @topic, @post] do |f|
-		= f.input :content, label: false, placeholder: "Post content"
-		= f.submit
-- else
-	= "Log in to join discussion"
+.post-form		
+	- if current_user
+		= simple_form_for [@resource, @topic, @post] do |f|
+			= f.input :content, label: false, placeholder: "Post content"
+			= f.submit
+	- else
+		= "Log in to join discussion"

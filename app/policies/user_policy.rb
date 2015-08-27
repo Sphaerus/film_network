@@ -1,11 +1,11 @@
 class UserPolicy < ApplicationPolicy
   
   def index?
-    !@user.nil?
+    !@user.nil? && !banned?
   end
   
   def show?
-    !@user.nil?
+    !@user.nil? && !banned?
   end
   
   def edit?
