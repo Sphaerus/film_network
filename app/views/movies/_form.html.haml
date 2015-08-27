@@ -1,7 +1,7 @@
 = simple_form_for @movie do |f|
 	= f.input :title
 	= f.input :production
-	= f.input :release_date, input_html: {class: "datepicker"}, as: :string
+	= f.input :release_date
 	= f.input :description
 	= f.input :poster
 	= f.input :opened if policy(@movie).own?
