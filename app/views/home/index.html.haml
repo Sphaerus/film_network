@@ -8,10 +8,14 @@
 			.record-data
 				.person-data
 					%p= "Born: #{record.born}" 
-					= "Died: #{record.died}"
+					%p= "Died: #{record.died}"
+					.description
+						%p= "Description: #{record.description ? record.description.truncate(82) : nil}"
 		-elsif record.is_a?(Movie)
 			.record-data
 				%p= "Production: #{record.production}"
-				= "Release date: #{record.release_date}"	
+				%p= "Release date: #{record.release_date}"
+				.description
+					%p= "Description: #{record.description ? record.description.truncate(82) : nil}"	
 
 = will_paginate @records		
