@@ -18,4 +18,20 @@ class Person < ActiveRecord::Base
       Person.all
     end
   end
+  
+  def movies_as_actor
+    self.movie_people.where(job: 0)
+  end
+  
+  def movies_as_director
+    self.movie_people.where(job: 1)
+  end
+  
+  def movies_as_screenwriter
+    self.movie_people.where(job: 2)
+  end
+  
+  def movies_as_producer
+    self.movie_people.where(job: 3)
+  end
 end

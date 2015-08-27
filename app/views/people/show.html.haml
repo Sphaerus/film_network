@@ -12,6 +12,26 @@
 %p= "Died: #{@person.died}"
 %p= "Description: #{@person.description}"
 
+- if !@person.movies_as_actor.empty?
+	%h3= "Actor"
+	- @person.movies_as_actor.each do |movie_person|
+		%p= link_to movie_person.movie.title, movie_person.movie
+		- if movie_person.role_name
+			= " - #{movie_person.role_name}"
+- if !@person.movies_as_director.empty?
+	%h3= "Director"
+	- @person.movies_as_director.each do |movie_person|
+		%p= link_to movie_person.movie.title, movie_person.movie
+- if !@person.movies_as_screenwriter.empty?
+	%h3= "Screenwriter"
+	- @person.movies_as_screenwriter.each do |movie_person|
+		%p= link_to movie_person.movie.title, movie_person.movie
+- if !@person.movies_as_producer.empty?
+	%h3= "Producer"
+	- @person.movies_as_producer.each do |movie_person|
+		%p= link_to movie_person.movie.title, movie_person.movie
+	
+
 %p= link_to "Edit this person", edit_person_path(@person) if policy(@person).edit?
 %p= link_to "Delete this person", person_path(@person), method: :delete if policy(@person).destroy?
 
