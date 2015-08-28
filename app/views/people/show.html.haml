@@ -15,9 +15,10 @@
 - if !@person.movies_as_actor.empty?
 	%h3= "Actor"
 	- @person.movies_as_actor.each do |movie_person|
-		%p= link_to movie_person.movie.title, movie_person.movie
+		= link_to movie_person.movie.title, movie_person.movie
 		- if movie_person.role_name
 			= " - #{movie_person.role_name}"
+		%br	
 - if !@person.movies_as_director.empty?
 	%h3= "Director"
 	- @person.movies_as_director.each do |movie_person|
