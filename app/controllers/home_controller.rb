@@ -24,5 +24,8 @@ class HomeController < ApplicationController
       pager.replace(@records[start, per_page])
     end
   end
+  
+  def info
+  end
 
 end
